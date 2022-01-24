@@ -13,9 +13,7 @@ class InputServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('input', function() {
-            return new Input();
-        });
+
     }
 
     /**
