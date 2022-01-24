@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class GwsInput extends Component
+class Input extends Component
 {
     /**
      * Create a new component instance.
@@ -23,7 +23,9 @@ class GwsInput extends Component
         public string $type = "text",
         public bool $readonly = false,
         public bool $required = false
-    ) { }
+    ) {
+        if($this->name === null) $this->name = $this->id;
+    }
 
     /**
      * Get the view / contents that represent the component.
@@ -32,6 +34,6 @@ class GwsInput extends Component
      */
     public function render(): View|string|Closure
     {
-        return view('components.gws-input');
+        return view('components.input');
     }
 }

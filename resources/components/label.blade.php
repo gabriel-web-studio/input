@@ -6,7 +6,7 @@
             </label>
         @endif
         @if($tip !== null)
-            <div>
+            <div class="@if(config('input.dark_mode')) text-gray-400 @else text-gray-800 @endif text-xs mb-2 pr-2">
                 {!! $tip !!}
             </div>
         @endif
