@@ -17,15 +17,20 @@ class Button extends Component
      */
     public function __construct(
         public string $label,
+        public ?string $text = null,
         public ?string $color = null,
         public ?string $activeColor = null
     ) {
-        if($this->color === null) {
-            config('input.dark_mode') ? 'bg-white' : 'bg-gray-600';
+        if($this->text == null) {
+            $this->text = config('input.dark_mode') ? 'text-gray-800' : 'text-white';
+        }
+
+        if($this->color == null) {
+            $this->color = config('input.dark_mode') ? 'bg-white' : 'bg-gray-600';
         }
 
         if($this->activeColor === null) {
-            config('input.dark_mode') ? 'bg-gray-300' : 'bg-gray-800';
+            $this->activeColor = config('input.dark_mode') ? 'hover:bg-gray-300' : 'hover:bg-gray-800';
         }
     }
 
