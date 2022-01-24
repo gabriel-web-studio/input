@@ -15,7 +15,19 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct(public string $label, public string $color = 'gray') {  }
+    public function __construct(
+        public string $label,
+        public ?string $color,
+        public ?string $activeColor
+    ) {
+        if($this->color === null) {
+            config('input.dark_mode') ? 'bg-white' : 'bg-gray-600';
+        }
+
+        if($this->activeColor === null) {
+            config('input.dark_mode') ? 'bg-gray-300' : 'bg-gray-800';
+        }
+    }
 
     /**
      * Get the view / contents that represent the component.
