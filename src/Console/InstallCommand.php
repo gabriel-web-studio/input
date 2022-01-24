@@ -29,8 +29,12 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../resources/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../resources/js/app.js', resource_path('js/app.js'));
-        copy(__DIR__.'/../../resources/components', resource_path('views'));
-        copy(__DIR__ . '/../View', app_path());
+
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../resources/components', resource_path('views/components'));
+
+        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../View/Components', app_path('View/Components'));
 
         $this->info('Inputs scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
