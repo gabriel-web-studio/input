@@ -2,8 +2,9 @@
 
 namespace GabrielWebStudio\Input\View\Components;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use function view;
 
 class Input extends Component
 {
@@ -12,17 +13,23 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $id,
+        public ?string $name,
+        public ?string $label,
+        public ?string $value,
+        public ?string $placeholder,
+        public string $type = "text",
+        public bool $readonly = false,
+        public bool $required = false,
+    ) { }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|string|Closure
     {
         return view('components.input');
     }
