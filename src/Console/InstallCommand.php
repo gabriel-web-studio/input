@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'gws-input:install';
+    protected $signature = 'gws-input:install {--base : Only if you have already installed TailwindCss and AlpineJs}';
 
     protected $description = 'Install the package resources and NPM dependencies';
 
@@ -24,11 +24,13 @@ class InstallCommand extends Command
                 ] + $packages;
         });
 
-        // Configuration Files
-        copy(__DIR__.'/../../resources/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../resources/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../resources/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__.'/../../resources/js/app.js', resource_path('js/app.js'));
+        if(!$this->option('base')) {
+            // Configuration Files
+            copy(__DIR__.'/../../resources/tailwind.config.js', base_path('tailwind.config.js'));
+            copy(__DIR__.'/../../resources/webpack.mix.js', base_path('webpack.mix.js'));
+            copy(__DIR__.'/../../resources/css/app.css', resource_path('css/app.css'));
+            copy(__DIR__.'/../../resources/js/app.js', resource_path('js/app.js'));
+        }
 
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../resources/components', resource_path('views/components'));
@@ -37,7 +39,10 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__.'/../View/Components', app_path('View/Components'));
 
         $this->info('Inputs scaffolding installed successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+
+        if(!$this->option('base')) {
+            $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        }
     }
 
     /**
