@@ -39,7 +39,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__.'/../../resources/components', resource_path('views/components'));
 
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../View/Components', app_path('View/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/View/Components', app_path('View/Components'));
 
         $this->info('Inputs scaffolding installed successfully.');
 
