@@ -1,0 +1,31 @@
+{
+    "name": "gabriel-web-studio/input",
+    "description": "Creating custom fields for Laravel based on TailwindCss and AlpineJs",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "GabrielWebStudio\\CustomInputs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel VANROY",
+            "email": "contact@gabriel-web-studio.fr"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/validation": "^8.42|^9.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GabrielWebStudio\\Input\\InputServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
