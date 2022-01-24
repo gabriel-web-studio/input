@@ -17,8 +17,8 @@ class Button extends Component
      */
     public function __construct(
         public string $label,
-        public ?string $color,
-        public ?string $activeColor
+        public ?string $color = null,
+        public ?string $activeColor = null
     ) {
         if($this->color === null) {
             config('input.dark_mode') ? 'bg-white' : 'bg-gray-600';
