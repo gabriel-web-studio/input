@@ -33,7 +33,7 @@ class InstallCommand extends Command
         }
 
         (new Filesystem)->ensureDirectoryExists(base_path('config'));
-        (new Filesystem)->copy(__DIR__ . '/../config/gabrielwebstudio.php', base_path('config/input.php'));
+        (new Filesystem)->copy(__DIR__ . '/../config/gws.php', base_path('config/gws.php'));
 
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../resources/components', resource_path('views/components'));
